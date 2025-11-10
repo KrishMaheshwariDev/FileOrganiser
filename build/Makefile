@@ -84,6 +84,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	C:\mingw64\bin\cmake.exe -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	C:\mingw64\bin\cmake.exe -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	C:\mingw64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	C:\mingw64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	C:\mingw64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	C:\mingw64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\Projects\FolderSort\build\CMakeFiles E:\Projects\FolderSort\build\\CMakeFiles\progress.marks
@@ -116,6 +161,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named imgui
+
+# Build rule for target.
+imgui: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 imgui
+.PHONY : imgui
+
+# fast build rule for target.
+imgui/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/build
+.PHONY : imgui/fast
+
+#=============================================================================
 # Target rules for targets named FolderSort
 
 # Build rule for target.
@@ -127,6 +185,213 @@ FolderSort: cmake_check_build_system
 FolderSort/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FolderSort.dir\build.make CMakeFiles/FolderSort.dir/build
 .PHONY : FolderSort/fast
+
+#=============================================================================
+# Target rules for targets named uninstall
+
+# Build rule for target.
+uninstall: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 uninstall
+.PHONY : uninstall
+
+# fast build rule for target.
+uninstall/fast:
+	$(MAKE) $(MAKESILENT) -f include\glfw\CMakeFiles\uninstall.dir\build.make include/glfw/CMakeFiles/uninstall.dir/build
+.PHONY : uninstall/fast
+
+#=============================================================================
+# Target rules for targets named glfw
+
+# Build rule for target.
+glfw: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 glfw
+.PHONY : glfw
+
+# fast build rule for target.
+glfw/fast:
+	$(MAKE) $(MAKESILENT) -f include\glfw\src\CMakeFiles\glfw.dir\build.make include/glfw/src/CMakeFiles/glfw.dir/build
+.PHONY : glfw/fast
+
+#=============================================================================
+# Target rules for targets named update_mappings
+
+# Build rule for target.
+update_mappings: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 update_mappings
+.PHONY : update_mappings
+
+# fast build rule for target.
+update_mappings/fast:
+	$(MAKE) $(MAKESILENT) -f include\glfw\src\CMakeFiles\update_mappings.dir\build.make include/glfw/src/CMakeFiles/update_mappings.dir/build
+.PHONY : update_mappings/fast
+
+include/imgui/backends/imgui_impl_glfw.obj: include/imgui/backends/imgui_impl_glfw.cpp.obj
+.PHONY : include/imgui/backends/imgui_impl_glfw.obj
+
+# target to build an object file
+include/imgui/backends/imgui_impl_glfw.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/backends/imgui_impl_glfw.cpp.obj
+.PHONY : include/imgui/backends/imgui_impl_glfw.cpp.obj
+
+include/imgui/backends/imgui_impl_glfw.i: include/imgui/backends/imgui_impl_glfw.cpp.i
+.PHONY : include/imgui/backends/imgui_impl_glfw.i
+
+# target to preprocess a source file
+include/imgui/backends/imgui_impl_glfw.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/backends/imgui_impl_glfw.cpp.i
+.PHONY : include/imgui/backends/imgui_impl_glfw.cpp.i
+
+include/imgui/backends/imgui_impl_glfw.s: include/imgui/backends/imgui_impl_glfw.cpp.s
+.PHONY : include/imgui/backends/imgui_impl_glfw.s
+
+# target to generate assembly for a file
+include/imgui/backends/imgui_impl_glfw.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/backends/imgui_impl_glfw.cpp.s
+.PHONY : include/imgui/backends/imgui_impl_glfw.cpp.s
+
+include/imgui/backends/imgui_impl_opengl3.obj: include/imgui/backends/imgui_impl_opengl3.cpp.obj
+.PHONY : include/imgui/backends/imgui_impl_opengl3.obj
+
+# target to build an object file
+include/imgui/backends/imgui_impl_opengl3.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/backends/imgui_impl_opengl3.cpp.obj
+.PHONY : include/imgui/backends/imgui_impl_opengl3.cpp.obj
+
+include/imgui/backends/imgui_impl_opengl3.i: include/imgui/backends/imgui_impl_opengl3.cpp.i
+.PHONY : include/imgui/backends/imgui_impl_opengl3.i
+
+# target to preprocess a source file
+include/imgui/backends/imgui_impl_opengl3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/backends/imgui_impl_opengl3.cpp.i
+.PHONY : include/imgui/backends/imgui_impl_opengl3.cpp.i
+
+include/imgui/backends/imgui_impl_opengl3.s: include/imgui/backends/imgui_impl_opengl3.cpp.s
+.PHONY : include/imgui/backends/imgui_impl_opengl3.s
+
+# target to generate assembly for a file
+include/imgui/backends/imgui_impl_opengl3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/backends/imgui_impl_opengl3.cpp.s
+.PHONY : include/imgui/backends/imgui_impl_opengl3.cpp.s
+
+include/imgui/imgui.obj: include/imgui/imgui.cpp.obj
+.PHONY : include/imgui/imgui.obj
+
+# target to build an object file
+include/imgui/imgui.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/imgui.cpp.obj
+.PHONY : include/imgui/imgui.cpp.obj
+
+include/imgui/imgui.i: include/imgui/imgui.cpp.i
+.PHONY : include/imgui/imgui.i
+
+# target to preprocess a source file
+include/imgui/imgui.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/imgui.cpp.i
+.PHONY : include/imgui/imgui.cpp.i
+
+include/imgui/imgui.s: include/imgui/imgui.cpp.s
+.PHONY : include/imgui/imgui.s
+
+# target to generate assembly for a file
+include/imgui/imgui.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/imgui.cpp.s
+.PHONY : include/imgui/imgui.cpp.s
+
+include/imgui/imgui_draw.obj: include/imgui/imgui_draw.cpp.obj
+.PHONY : include/imgui/imgui_draw.obj
+
+# target to build an object file
+include/imgui/imgui_draw.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/imgui_draw.cpp.obj
+.PHONY : include/imgui/imgui_draw.cpp.obj
+
+include/imgui/imgui_draw.i: include/imgui/imgui_draw.cpp.i
+.PHONY : include/imgui/imgui_draw.i
+
+# target to preprocess a source file
+include/imgui/imgui_draw.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/imgui_draw.cpp.i
+.PHONY : include/imgui/imgui_draw.cpp.i
+
+include/imgui/imgui_draw.s: include/imgui/imgui_draw.cpp.s
+.PHONY : include/imgui/imgui_draw.s
+
+# target to generate assembly for a file
+include/imgui/imgui_draw.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/imgui_draw.cpp.s
+.PHONY : include/imgui/imgui_draw.cpp.s
+
+include/imgui/imgui_tables.obj: include/imgui/imgui_tables.cpp.obj
+.PHONY : include/imgui/imgui_tables.obj
+
+# target to build an object file
+include/imgui/imgui_tables.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/imgui_tables.cpp.obj
+.PHONY : include/imgui/imgui_tables.cpp.obj
+
+include/imgui/imgui_tables.i: include/imgui/imgui_tables.cpp.i
+.PHONY : include/imgui/imgui_tables.i
+
+# target to preprocess a source file
+include/imgui/imgui_tables.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/imgui_tables.cpp.i
+.PHONY : include/imgui/imgui_tables.cpp.i
+
+include/imgui/imgui_tables.s: include/imgui/imgui_tables.cpp.s
+.PHONY : include/imgui/imgui_tables.s
+
+# target to generate assembly for a file
+include/imgui/imgui_tables.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/imgui_tables.cpp.s
+.PHONY : include/imgui/imgui_tables.cpp.s
+
+include/imgui/imgui_widgets.obj: include/imgui/imgui_widgets.cpp.obj
+.PHONY : include/imgui/imgui_widgets.obj
+
+# target to build an object file
+include/imgui/imgui_widgets.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/imgui_widgets.cpp.obj
+.PHONY : include/imgui/imgui_widgets.cpp.obj
+
+include/imgui/imgui_widgets.i: include/imgui/imgui_widgets.cpp.i
+.PHONY : include/imgui/imgui_widgets.i
+
+# target to preprocess a source file
+include/imgui/imgui_widgets.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/imgui_widgets.cpp.i
+.PHONY : include/imgui/imgui_widgets.cpp.i
+
+include/imgui/imgui_widgets.s: include/imgui/imgui_widgets.cpp.s
+.PHONY : include/imgui/imgui_widgets.s
+
+# target to generate assembly for a file
+include/imgui/imgui_widgets.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\imgui.dir\build.make CMakeFiles/imgui.dir/include/imgui/imgui_widgets.cpp.s
+.PHONY : include/imgui/imgui_widgets.cpp.s
+
+src/Managers/FileManager.obj: src/Managers/FileManager.cpp.obj
+.PHONY : src/Managers/FileManager.obj
+
+# target to build an object file
+src/Managers/FileManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FolderSort.dir\build.make CMakeFiles/FolderSort.dir/src/Managers/FileManager.cpp.obj
+.PHONY : src/Managers/FileManager.cpp.obj
+
+src/Managers/FileManager.i: src/Managers/FileManager.cpp.i
+.PHONY : src/Managers/FileManager.i
+
+# target to preprocess a source file
+src/Managers/FileManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FolderSort.dir\build.make CMakeFiles/FolderSort.dir/src/Managers/FileManager.cpp.i
+.PHONY : src/Managers/FileManager.cpp.i
+
+src/Managers/FileManager.s: src/Managers/FileManager.cpp.s
+.PHONY : src/Managers/FileManager.s
+
+# target to generate assembly for a file
+src/Managers/FileManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FolderSort.dir\build.make CMakeFiles/FolderSort.dir/src/Managers/FileManager.cpp.s
+.PHONY : src/Managers/FileManager.cpp.s
 
 src/Managers/SearchManager.obj: src/Managers/SearchManager.cpp.obj
 .PHONY : src/Managers/SearchManager.obj
@@ -151,6 +416,30 @@ src/Managers/SearchManager.s: src/Managers/SearchManager.cpp.s
 src/Managers/SearchManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FolderSort.dir\build.make CMakeFiles/FolderSort.dir/src/Managers/SearchManager.cpp.s
 .PHONY : src/Managers/SearchManager.cpp.s
+
+src/Managers/TagManager.obj: src/Managers/TagManager.cpp.obj
+.PHONY : src/Managers/TagManager.obj
+
+# target to build an object file
+src/Managers/TagManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FolderSort.dir\build.make CMakeFiles/FolderSort.dir/src/Managers/TagManager.cpp.obj
+.PHONY : src/Managers/TagManager.cpp.obj
+
+src/Managers/TagManager.i: src/Managers/TagManager.cpp.i
+.PHONY : src/Managers/TagManager.i
+
+# target to preprocess a source file
+src/Managers/TagManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FolderSort.dir\build.make CMakeFiles/FolderSort.dir/src/Managers/TagManager.cpp.i
+.PHONY : src/Managers/TagManager.cpp.i
+
+src/Managers/TagManager.s: src/Managers/TagManager.cpp.s
+.PHONY : src/Managers/TagManager.s
+
+# target to generate assembly for a file
+src/Managers/TagManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FolderSort.dir\build.make CMakeFiles/FolderSort.dir/src/Managers/TagManager.cpp.s
+.PHONY : src/Managers/TagManager.cpp.s
 
 src/States/EntryState.obj: src/States/EntryState.cpp.obj
 .PHONY : src/States/EntryState.obj
@@ -207,11 +496,43 @@ help:
 	@echo ... clean
 	@echo ... depend
 	@echo ... edit_cache
+	@echo ... install
+	@echo ... install/local
+	@echo ... install/strip
+	@echo ... list_install_components
 	@echo ... rebuild_cache
+	@echo ... uninstall
+	@echo ... update_mappings
 	@echo ... FolderSort
+	@echo ... glfw
+	@echo ... imgui
+	@echo ... include/imgui/backends/imgui_impl_glfw.obj
+	@echo ... include/imgui/backends/imgui_impl_glfw.i
+	@echo ... include/imgui/backends/imgui_impl_glfw.s
+	@echo ... include/imgui/backends/imgui_impl_opengl3.obj
+	@echo ... include/imgui/backends/imgui_impl_opengl3.i
+	@echo ... include/imgui/backends/imgui_impl_opengl3.s
+	@echo ... include/imgui/imgui.obj
+	@echo ... include/imgui/imgui.i
+	@echo ... include/imgui/imgui.s
+	@echo ... include/imgui/imgui_draw.obj
+	@echo ... include/imgui/imgui_draw.i
+	@echo ... include/imgui/imgui_draw.s
+	@echo ... include/imgui/imgui_tables.obj
+	@echo ... include/imgui/imgui_tables.i
+	@echo ... include/imgui/imgui_tables.s
+	@echo ... include/imgui/imgui_widgets.obj
+	@echo ... include/imgui/imgui_widgets.i
+	@echo ... include/imgui/imgui_widgets.s
+	@echo ... src/Managers/FileManager.obj
+	@echo ... src/Managers/FileManager.i
+	@echo ... src/Managers/FileManager.s
 	@echo ... src/Managers/SearchManager.obj
 	@echo ... src/Managers/SearchManager.i
 	@echo ... src/Managers/SearchManager.s
+	@echo ... src/Managers/TagManager.obj
+	@echo ... src/Managers/TagManager.i
+	@echo ... src/Managers/TagManager.s
 	@echo ... src/States/EntryState.obj
 	@echo ... src/States/EntryState.i
 	@echo ... src/States/EntryState.s

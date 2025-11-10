@@ -5,6 +5,7 @@
 #include <vector>
 #include <filesystem>
 #include <memory>
+#include <optional> // ✅ Required for std::optional
 
 #include "SearchManager.h"
 
@@ -96,6 +97,8 @@ public:
      * Currently identity; modify here if you later want case-insensitive behavior.
      */
     static std::string NormalizeTag(const std::string &tag);
+
+    bool SetDestination(const std::string &tagName, const std::string &newPath);
 
 private:
     SearchManager &m_searchManager;

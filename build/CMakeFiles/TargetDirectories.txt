@@ -1,3 +1,11 @@
+E:/Projects/FolderSort/build/CMakeFiles/imgui.dir
 E:/Projects/FolderSort/build/CMakeFiles/FolderSort.dir
+E:/Projects/FolderSort/build/CMakeFiles/INSTALL.dir
 E:/Projects/FolderSort/build/CMakeFiles/ALL_BUILD.dir
 E:/Projects/FolderSort/build/CMakeFiles/ZERO_CHECK.dir
+E:/Projects/FolderSort/build/include/glfw/CMakeFiles/uninstall.dir
+E:/Projects/FolderSort/build/include/glfw/CMakeFiles/INSTALL.dir
+E:/Projects/FolderSort/build/include/glfw/CMakeFiles/ALL_BUILD.dir
+E:/Projects/FolderSort/build/include/glfw/src/CMakeFiles/glfw.dir
+E:/Projects/FolderSort/build/include/glfw/src/CMakeFiles/update_mappings.dir
+E:/Projects/FolderSort/build/include/glfw/src/CMakeFiles/INSTALL.dir

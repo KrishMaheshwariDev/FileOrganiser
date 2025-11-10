@@ -8,7 +8,8 @@
 #include <cstdio>   // std::remove / std::rename
 
 // nlohmann json
-#include "../../include/json.hpp"
+#include "../../include/json/json.hpp"
+
 using json = nlohmann::json;
 
 namespace fs = std::filesystem;
@@ -367,26 +368,26 @@ std::vector<FileData *> TagManager::GetFilesByTag(const std::string &tagName)
     return out;
 }
 
-const std::unordered_map<std::string, std::vector<size_t>> &TagManager::GetTagMap() const
-{
-    // Build a temporary view to match header signature would require copying.
-    // The header returns a const reference to internal storage type:
-    // const std::unordered_map<std::string, std::vector<size_t>> &
-    // But we internally store TagInfo. To honor the header without changing it,
-    // we maintain a static cache mapping view. Simpler approach is to adapt header
-    // to return TagInfo map directly. For now, we create a persistent member-level
-    // view to return a reference to. (This is a small shim — if you prefer, change the header.)
-    if (!m_tagMapCacheInitialized)
-    {
-        m_tagMapCache.clear();
-        for (const auto &pair : m_impl->tags)
-        {
-            m_tagMapCache.emplace(pair.first, pair.second.fileIndices);
-        }
-        m_tagMapCacheInitialized = true;
-    }
-    return m_tagMapCache;
-}
+// const std::unordered_map<std::string, std::vector<size_t>> &TagManager::GetTagMap() const
+// {
+//     // Build a temporary view to match header signature would require copying.
+//     // The header returns a const reference to internal storage type:
+//     // const std::unordered_map<std::string, std::vector<size_t>> &
+//     // But we internally store TagInfo. To honor the header without changing it,
+//     // we maintain a static cache mapping view. Simpler approach is to adapt header
+//     // to return TagInfo map directly. For now, we create a persistent member-level
+//     // view to return a reference to. (This is a small shim — if you prefer, change the header.)
+//     if (!m_tagMapCacheInitialized)
+//     {
+//         m_tagMapCache.clear();
+//         for (const auto &pair : m_impl->tags)
+//         {
+//             m_tagMapCache.emplace(pair.first, pair.second.fileIndices);
+//         }
+//         m_tagMapCacheInitialized = true;
+//     }
+//     return m_tagMapCache;
+// }
 
 std::string TagManager::NormalizeTag(const std::string &tag)
 {
@@ -422,4 +423,19 @@ const std::unordered_map<std::string, std::vector<size_t>> &TagManager::GetTagMa
     }
     g_tag_map_cache_init = true;
     return g_tag_map_cache;
+}
+
+bool TagManager::SetDestination(const std::string &tagName, const std::string &newPath)
+{
+    const std::string tag = NormalizeTag(tagName);
+    auto it = m_impl->tags.find(tag);
+    if (it == m_impl->tags.end())
+        return false;
+
+    std::string abs;
+    if (!ValidateDestination(newPath, abs))
+        return false;
+
+    it->second.destination = abs;
+    return SaveTagsToJson();
 }
